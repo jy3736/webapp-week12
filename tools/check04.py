@@ -32,25 +32,27 @@ def test01(c, e):
     if chk[0] != exp[0]:
         failed(c, e)
 
-def execMain(dat):
+def execMain(cmd, dat=""):
     dat = dat.encode('utf-8')
-    p = subprocess.Popen('node .\main.js',
+    p = subprocess.Popen(["node",cmd],
                          shell=False,
                          stdin=subprocess.PIPE,
                          stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE
                          )
     p.stdin.write(dat)
-    p.stdin.close()
     output, error = p.communicate()
     output = output.decode('utf-8')
+    p.stdin.close()
     return output
 
 
 def main():
+    global expected
+    # cwd = os.path.abspath(os.getcwd())
     for i in range(20):
         dat, exp = expected()
-        test01(execMain(dat), exp)
+        test01(execMain('./src/lab04/main.js',dat), exp)
     print("測試通過!")
     exit(0)
 

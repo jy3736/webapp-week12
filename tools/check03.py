@@ -29,29 +29,28 @@ def test01(c, e):
     exp = cleanup(e)
     if chk[0] != exp[0]:
         failed(c, e)
-    print("測試通過!")
-    print(f"\n{c}")
-    exit(0)
 
 
-def execMain(dat):
-    dat = dat.encode('utf-8')
-    p = subprocess.Popen('node .\main.js',
+def execMain(cmd):
+    p = subprocess.Popen(["node",cmd],
                          shell=False,
                          stdin=subprocess.PIPE,
                          stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE
                          )
-    p.stdin.write(dat)
-    p.stdin.close()
     output, error = p.communicate()
     output = output.decode('utf-8')
+    p.stdin.close()
     return output
 
 
 def main():
-    dat, exp = expected()
-    test01(execMain(dat), exp)
+    global expected
+    # cwd = os.path.abspath(os.getcwd())
+    test01(execMain('./src/lab03/main.js'), expected)
+    print("測試通過!")
+    exit(0)
+
 
 
 if __name__ == "__main__":
