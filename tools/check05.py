@@ -31,6 +31,7 @@ def test01(c, e):
     exp = cleanup(e)
     if chk[0] != exp[0]:
         failed(c, e)
+    return c
 
 
 def execMain(cmd, dat=""):
@@ -51,10 +52,12 @@ def execMain(cmd, dat=""):
 def main():
     global expected
     # cwd = os.path.abspath(os.getcwd())
+    ret=""
     for i in range(20):
         dat, exp = expected()
-        test01(execMain('./src/lab05/main.js',dat), exp)
+        ret = test01(execMain('./src/lab05/main.js',dat), exp)
     print("測試通過!")
+    print(f"\n{ret}")
     exit(0)
 
 

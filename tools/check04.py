@@ -50,10 +50,12 @@ def execMain(cmd, dat=""):
 def main():
     global expected
     # cwd = os.path.abspath(os.getcwd())
+    ret=""
     for i in range(20):
         dat, exp = expected()
-        test01(execMain('./src/lab04/main.js',dat), exp)
+        ret = test01(execMain('./src/lab04/main.js',dat), exp)
     print("測試通過!")
+    print(f"\n{ret}")
     exit(0)
 
 

@@ -29,15 +29,17 @@ def test01(c, e):
     exp = cleanup(e)
     if chk[0] != exp[0]:
         failed(c, e)
+    return c
 
-
-def execMain(cmd):
+def execMain(cmd,dat=""):
+    dat = dat.encode('utf-8')    
     p = subprocess.Popen(["node",cmd],
                          shell=False,
                          stdin=subprocess.PIPE,
                          stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE
                          )
+    p.stdin.write(dat)
     output, error = p.communicate()
     output = output.decode('utf-8')
     p.stdin.close()
@@ -47,8 +49,10 @@ def execMain(cmd):
 def main():
     global expected
     # cwd = os.path.abspath(os.getcwd())
-    test01(execMain('./src/lab03/main.js'), expected)
+    dat, exp = expected()
+    ret = test01(execMain('./src/lab03/main.js',dat), exp)
     print("測試通過!")
+    print(f"\n{ret}")
     exit(0)
 
 

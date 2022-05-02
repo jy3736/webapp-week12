@@ -4,12 +4,14 @@ import os
 import subprocess
 import re
 
-expected = '''
-gTime = 0,10,20,30,40,50,60,70,80,90,100
-gT1   = 125,106,184,53,31,168,183,69,199,102,50
-gT2   = 161,70,189,66,66,192,54,42,106,37,97
-gMemo = NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-'''
+def expected():
+    exp = '''
+    gTime = 0,10,20,30,40,50,60,70,80,90,100
+    gT1   = 125,106,184,53,31,168,183,69,199,102,50
+    gT2   = 161,70,189,66,66,192,54,42,106,37,97
+    gMemo = NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+    '''
+    return "", exp
 
 
 def cleanup(s):
@@ -31,9 +33,10 @@ def test01(c, e):
         failed(c, e)
     if chk[3] != exp[3]:
         failed(c, e)
+    return c
 
 
-def execMain(cmd):
+def execMain(cmd,dat=""):
     p = subprocess.Popen(["node",cmd],
                          shell=False,
                          stdin=subprocess.PIPE,
@@ -48,10 +51,11 @@ def execMain(cmd):
 
 
 def main():
-    global expected
-    # cwd = os.path.abspath(os.getcwd())
-    test01(execMain('./src/lab02/main.js'), expected)
+     # cwd = os.path.abspath(os.getcwd())
+    dat, exp = expected()
+    ret = test01(execMain('./src/lab02/main.js',dat), exp)
     print("測試通過!")
+    print(f"\n{ret}")
     exit(0)
 
 

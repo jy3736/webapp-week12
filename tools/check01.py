@@ -4,8 +4,8 @@ import os
 import subprocess
 import re
 
-expected = '''Hello STUST!
-'''
+def expected():
+    return "","Hello STUST!"
 
 
 def cleanup(s):
@@ -25,12 +25,10 @@ def test01(c, e):
     exp = cleanup(e)
     if chk[0] != exp[0]:
         failed(c, e)
-    print("測試通過!")
-    print(f"\n{c}")
-    exit(0)
+    return c
 
 
-def execMain(cmd):
+def execMain(cmd,dat=""):
     p = subprocess.Popen(["node",cmd],
                          shell=False,
                          stdin=subprocess.PIPE,
@@ -46,7 +44,11 @@ def execMain(cmd):
 def main():
     global expected
     # cwd = os.path.abspath(os.getcwd())
-    test01(execMain('./src/lab01/main.js'), expected)
+    dat, exp = expected()
+    ret = test01(execMain('./src/lab01/main.js',dat), exp)
+    print("測試通過!")
+    print(f"\n{ret}")
+    exit(0)
 
 
 if __name__ == "__main__":
