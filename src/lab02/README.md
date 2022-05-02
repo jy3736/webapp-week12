@@ -1,21 +1,19 @@
+## 用亂數模擬烘豆機的溫度變化
+
 ### Testing Under Windows
 
-```dos
-PS C:\Workspace\test-makefile-stutdino\src\lab01> echo 500 50 | node .\main.js
+```shell
+lab02> echo 500 50 | node .\main.js
 
-    Sampling Period : 50 sec
-    ==============================
-    gTime = 0,50,100,150,200,250,300,350,400,450,500
-    gT1   = 30,112,121,158,124,29,101,4,80,1,1
-    gT2   = 59,53,133,0,27,154,71,134,122,33,184
-    gMemo = NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+gTime = 0,50,100,150,200,250,300,350,400,450,500
+gT1   = 85,88,111,142,1,156,19,171,144,90,133
+gT2   = 172,93,123,82,129,0,161,91,0,8,111
+gMemo = NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 
-PS C:\Workspace\test-makefile-stutdino\src\lab01> echo 100 10 | node .\main.js
+lab02> echo 100 5 | node .\main.js 
 
-    Sampling Period : 10 sec
-    ==============================
-    gTime = 0,10,20,30,40,50,60,70,80,90,100
-    gT1   = 190,159,23,53,118,163,188,122,184,19,34
-    gT2   = 97,73,33,70,154,26,170,88,182,147,148
-    gMemo = NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+gTime = 0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100
+gT1   = 4,78,154,31,164,15,166,42,169,64,125,11,198,173,89,37,37,177,39,110,72
+gT2   = 145,12,53,119,88,29,9,13,103,6,171,60,153,131,91,62,71,84,103,121,129
+gMemo = NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 ````

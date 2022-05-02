@@ -1,15 +1,20 @@
+## 輸出陣列中的最小值
+
 ### Testing Under Windows
 
 ```dos
-PS C:\Workspace\test-makefile-stutdino\src\lab02> type .\data1.txt
-1 2 3 4 5
-6 7 8 9 10
-1 2 3 4 5
-6 7 8 9 10
+lab05> type .\data.txt
+1 2 45 3 6 23
+44 33 66 34
+66 77 44 34
+2 34 88 23 4
 
-PS C:\Workspace\test-makefile-stutdino\src\lab02> type .\data1.txt | node .\main.js
-sum(1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10) = 110
+lab05> type .\data.txt | node .\main.js
+min(1,2,45,3,6,23,44,33,66,34,66,77,44,34,2,34,88,23,4) = 1
 
-PS C:\Workspace\test-makefile-stutdino\src\lab02> echo 1 2 3 4 5 | node .\main.js
-sum(1,2,3,4,5) = 15
+lab05> echo 88 77 44 66 33 99 11 | node .\main.js
+min(88,77,44,66,33,99,11) = 11
+
+lab05> echo 11 22 44 -5 55 66 88 | node .\main.js 
+min(11,22,44,-5,55,66,88) = -5
 ````
